@@ -21,7 +21,7 @@ func Test_lexSyntax(t *testing.T) {
 		cursor, token := lexSyntax([]rune(test.src), test.cursor)
 		assert.Equal(t, test.wantCursor, cursor)
 		assert.Equal(t, test.wantValue, token.value)
-		assert.Equal(t, syntax, token.kind)
+		assert.Equal(t, syntaxToken, token.kind)
 	}
 }
 
@@ -41,7 +41,7 @@ func Test_lexInteger(t *testing.T) {
 		cursor, token := lexInteger([]rune(test.src), test.cursor)
 		assert.Equal(t, test.wantCursor, cursor)
 		assert.Equal(t, test.wantValue, token.value)
-		assert.Equal(t, integer, token.kind)
+		assert.Equal(t, integerToken, token.kind)
 	}
 }
 
@@ -60,7 +60,7 @@ func Test_lexIdentifier(t *testing.T) {
 		cursor, token := lexIdentifier([]rune(test.src), test.cursor)
 		assert.Equal(t, test.wantCursor, cursor)
 		assert.Equal(t, test.wantValue, token.value)
-		assert.Equal(t, identifier, token.kind)
+		assert.Equal(t, identifierToken, token.kind)
 	}
 }
 
@@ -74,27 +74,27 @@ func Test_lex(t *testing.T) {
 			[]token{
 				{
 					value:    "(",
-					kind:     syntax,
+					kind:     syntaxToken,
 					location: 1,
 				},
 				{
 					value:    "+",
-					kind:     identifier,
+					kind:     identifierToken,
 					location: 3,
 				},
 				{
 					value:    "13",
-					kind:     integer,
+					kind:     integerToken,
 					location: 5,
 				},
 				{
 					value:    "2",
-					kind:     integer,
+					kind:     integerToken,
 					location: 8,
 				},
 				{
 					value:    ")",
-					kind:     syntax,
+					kind:     syntaxToken,
 					location: 11,
 				},
 			},

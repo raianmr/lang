@@ -15,4 +15,7 @@ func main() {
 	for _, token := range tokens {
 		fmt.Println(token.value)
 	}
+
+	ast, _ := parse(tokens, 0)
+	fmt.Println(ast.pretty())
 }

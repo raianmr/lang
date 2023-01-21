@@ -5,9 +5,9 @@ import "unicode"
 type tokenKind uint
 
 const (
-	syntax tokenKind = iota
-	integer
-	identifier
+	syntaxToken tokenKind = iota
+	integerToken
+	identifierToken
 )
 
 type token struct {
@@ -71,7 +71,7 @@ func lexSyntax(src []rune, cursor int) (int, *token) {
 
 	return cursor + 1, &token{
 		value:    string(src[cursor]),
-		kind:     syntax,
+		kind:     syntaxToken,
 		location: cursor,
 	}
 }
@@ -96,7 +96,7 @@ func lexInteger(src []rune, cursor int) (int, *token) {
 
 	return cursor, &token{
 		value:    string(value),
-		kind:     integer,
+		kind:     integerToken,
 		location: oldCursor,
 	}
 }
@@ -121,7 +121,7 @@ func lexIdentifier(src []rune, cursor int) (int, *token) {
 
 	return cursor, &token{
 		value:    string(value),
-		kind:     identifier,
+		kind:     identifierToken,
 		location: oldCursor,
 	}
 }
